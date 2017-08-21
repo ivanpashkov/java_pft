@@ -9,9 +9,9 @@ public class AddingContact extends TestBase {
   @Test
     public void testAddingContact () {
 
-    app.initUserCreation();
-    app.fillUserForm(new UserData("testName", "testMiddlename", "testLastname", "testNickname", "Mr", "Ololo", "testaddress"));
-    app.submitUserCreation();
+    app.getUserHelper().initUserCreation();
+    app.getUserHelper().fillUserForm(new UserData("testName", "testMiddlename", "testLastname", "testNickname", "Mr", "Ololo", "testaddress"));
+    app.getUserHelper().submitUserCreation();
   }
 
 }
