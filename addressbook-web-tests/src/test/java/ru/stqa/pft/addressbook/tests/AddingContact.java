@@ -1,3 +1,5 @@
+package ru.stqa.pft.addressbook.tests;
+
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.AfterMethod;
@@ -7,13 +9,12 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.*;
-import ru.stqa.pft.addressbook.UserData;
 
-public class AddingContact {
+public class AddingContact extends TestBase {
     FirefoxDriver wd;
     
     @BeforeMethod
-    public void setUp() throws Exception {
+    public void  setUp() throws Exception {
       wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true));
         wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
       login("admin", "secret");
