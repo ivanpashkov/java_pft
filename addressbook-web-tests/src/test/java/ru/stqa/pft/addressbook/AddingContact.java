@@ -1,3 +1,5 @@
+package ru.stqa.pft.addressbook;
+
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.AfterMethod;
@@ -9,7 +11,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.*;
 import ru.stqa.pft.addressbook.UserData;
 
-public class AddingContact {
+public class AddingContact{
     FirefoxDriver wd;
     
     @BeforeMethod
@@ -20,6 +22,7 @@ public class AddingContact {
     }
 
   private void login(String username, String password) {
+
     wd.get("http://localhost/addressbook/");
     wd.findElement(By.name("user")).click();
     wd.findElement(By.name("user")).clear();
