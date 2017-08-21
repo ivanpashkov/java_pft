@@ -2,6 +2,7 @@ package ru.stqa.pft.addressbook.appmanager;
 //123
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.SessionNotCreatedException;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
@@ -9,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 public class ApplicationManager {
   FirefoxDriver wd;
-
+  private SessionHelper sessionHelper;
   private UserHelper userHelper;
   private NavigationHelper navigationHelper;
   private GroupHelper groupHelper;
@@ -30,18 +31,11 @@ public class ApplicationManager {
     groupHelper = new GroupHelper(wd);
     navigationHelper = new NavigationHelper(wd);
     userHelper = new UserHelper(wd);
-    login("admin", "secret");
+    sessionHelper = new SessionHelper(wd);
+    sessionHelper.login("admin", "secret");
   }
 
-  private void login(String username, String password) {
-     userHelper.wd.findElement(By.name("user")).click();
-     userHelper.wd.findElement(By.name("user")).clear();
-     userHelper.wd.findElement(By.name("user")).sendKeys(username);
-     userHelper.wd.findElement(By.name("pass")).click();
-     userHelper.wd.findElement(By.name("pass")).clear();
-     userHelper.wd.findElement(By.name("pass")).sendKeys(password);
-     userHelper.wd.findElement(By.xpath("//form[@id='LoginForm']/input[3]")).click();
-  }
+
 
   public void stop() {
     wd.quit();
