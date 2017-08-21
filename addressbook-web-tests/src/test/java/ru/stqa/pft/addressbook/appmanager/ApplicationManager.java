@@ -1,5 +1,5 @@
 package ru.stqa.pft.addressbook.appmanager;
-
+//123
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -9,7 +9,7 @@ import ru.stqa.pft.addressbook.model.UserData;
 
 import java.util.concurrent.TimeUnit;
 
-public class ApplicationManager {
+public class ApplicationManager extends GroupHelper{
   FirefoxDriver wd;
 
   public static boolean isAlertPresent(FirefoxDriver wd) {

@@ -1,5 +1,5 @@
 package ru.stqa.pft.addressbook.model;
-
+//123
 public class GroupData {
   private final String name;
   private final String header;
