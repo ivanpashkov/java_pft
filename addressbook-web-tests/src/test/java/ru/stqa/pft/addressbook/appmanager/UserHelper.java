@@ -42,4 +42,14 @@ type(By.name("address"),userData.getAddress() );
   public void gotoUserPage() {
     click(By.linkText("home"));
   }
+
+  public void selectAllUsers() {
+    click(By.name("selected[]"));
+  }
+
+  public void deleteUser() {
+
+    click(By.xpath("//div/div[4]/form[2]/div[2]/input"));
+    wd.switchTo().alert().accept();
+  }
 }
