@@ -30,4 +30,16 @@ type(By.name("address"),userData.getAddress() );
   public void initUserCreation() {
     click(By.linkText("add new"));
   }
+
+  public void editUser() {
+    click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
+  }
+
+  public void confirmUserEdit() {
+    click(By.xpath("//div[@id='content']/form[1]/input[22]"));
+  }
+
+  public void gotoUserPage() {
+    click(By.linkText("home"));
+  }
 }
