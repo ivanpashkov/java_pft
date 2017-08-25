@@ -12,6 +12,7 @@ public class AddingContact extends TestBase {
     app.getUserHelper().initUserCreation();
     app.getUserHelper().fillUserForm(new UserData("testName", "testMiddlename", "testLastname", "testNickname", "Mr", "Ololo", "testaddress", "test1"), true);
     app.getUserHelper().submitUserCreation();
+    app.getNavigationHelper().gotoHomePage();
   }
 
 }
