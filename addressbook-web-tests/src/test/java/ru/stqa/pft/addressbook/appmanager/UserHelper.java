@@ -63,4 +63,16 @@ if (creation) {
     click(By.xpath("//div/div[4]/form[2]/div[2]/input"));
     wd.switchTo().alert().accept();
   }
+
+  public void createUser(UserData User, boolean b) {
+    initUserCreation();
+    fillUserForm((User), b);
+    submitUserCreation();
+    gotoUserPage();
+  }
+
+  public boolean isThereAUser() {
+    return isElementPresent(By.name("selected[]"));
+
+  }
 }
