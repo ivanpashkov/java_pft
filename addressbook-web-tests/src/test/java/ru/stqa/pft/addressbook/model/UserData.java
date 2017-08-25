@@ -8,8 +8,9 @@ public class UserData {
   private final String title;
   private final String company;
   private final String address;
+  private String group;
 
-  public UserData(String firstName, String middlename, String lastname, String nickname, String title, String company, String address) {
+  public UserData(String firstName, String middlename, String lastname, String nickname, String title, String company, String address, String group) {
     this.firstName = firstName;
     this.middlename = middlename;
     this.lastname = lastname;
@@ -17,6 +18,7 @@ public class UserData {
     this.title = title;
     this.company = company;
     this.address = address;
+    this.group = group;
   }
 
   public String getFirstName() {
@@ -45,5 +47,8 @@ public class UserData {
 
   public String getAddress() {
     return address;
+  }
+
+  public String getGroup() {return group;
   }
 }
