@@ -58,8 +58,8 @@ if (creation) {
     click(By.linkText("home"));
   }
 
-  public void selectAllUsers() {
-    click(By.name("selected[]"));
+  public void selectUser(int index) {
+    wd.findElements(By.name("selected[]")).get(index).click();
   }
 
   public void deleteUser() {

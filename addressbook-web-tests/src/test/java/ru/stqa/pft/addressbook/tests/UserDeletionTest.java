@@ -14,7 +14,7 @@ public class UserDeletionTest extends TestBase {
     if (! app.getUserHelper().isThereAUser()) {
       app.getUserHelper().createUser(new UserData("testName", "testMiddlename", "testLastname", "testNickname", "Mr", "Ololo", "testaddress", "test1"), true);
     }
-    app.getUserHelper().selectAllUsers();
+    app.getUserHelper().selectUser(before-1);
     app.getUserHelper().deleteUser();
     app.getUserHelper().gotoUserPage();
     int after = app.getUserHelper().getUserCount();
