@@ -11,6 +11,10 @@ import ru.stqa.pft.addressbook.model.UserData;
 public class UserHelper extends HelperBase {
 
 
+  public int getUserCount() {
+    return wd.findElements(By.name("selected[]")).size();
+  }
+
   public UserHelper(WebDriver wd) {
     super(wd);
   }
