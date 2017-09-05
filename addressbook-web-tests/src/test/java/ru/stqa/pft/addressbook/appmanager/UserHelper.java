@@ -4,9 +4,13 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 import ru.stqa.pft.addressbook.model.UserData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserHelper extends HelperBase {
 
@@ -24,21 +28,21 @@ public class UserHelper extends HelperBase {
   }
 
   public void fillUserForm(UserData userData, boolean creation) {
-type(By.name("firstname"),userData.getFirstName());
-type(By.name("middlename"),userData.getMiddlename() );
-type(By.name("lastname"),userData.getLastname());
-type(By.name("nickname"),userData.getNickname());
-type(By.name("nickname"),userData.getNickname());
-type(By.name("title"),userData.getTitle());
-type(By.name("company"),userData.getCompany() );
-type(By.name("address"),userData.getAddress() );
+    type(By.name("firstname"), userData.getFirstName());
+    type(By.name("middlename"), userData.getMiddlename());
+    type(By.name("lastname"), userData.getLastname());
+    type(By.name("nickname"), userData.getNickname());
+    type(By.name("nickname"), userData.getNickname());
+    type(By.name("title"), userData.getTitle());
+    type(By.name("company"), userData.getCompany());
+    type(By.name("address"), userData.getAddress());
 
-if (creation) {
-  new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(userData.getGroup());
+    if (creation) {
+      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(userData.getGroup());
 
-    } else
-{
-  Assert.assertFalse(isElementPresent(By.name("new_group")));}
+    } else {
+      Assert.assertFalse(isElementPresent(By.name("new_group")));
+    }
   }
 
 
@@ -78,5 +82,20 @@ if (creation) {
   public boolean isThereAUser() {
     return isElementPresent(By.name("selected[]"));
 
+  }
+
+  public List<UserData> getUserList() {
+    List<UserData> users = new ArrayList<UserData>();
+    List<WebElement> rows = wd.findElements(By.xpath("//tr[@name='entry']"));
+
+    for (WebElement row : rows) {
+      List<WebElement> tdList = row.findElements(By.tagName("td"));
+      String firstName = tdList.get(1).getText();
+      String lastName = tdList.get(2).getText();
+      UserData user = new UserData(firstName, lastName, null, null, null, null, null, null);
+      users.add(user);
+    }
+
+    return users;
   }
 }
