@@ -51,4 +51,26 @@ public class UserData {
 
   public String getGroup() {return group;
   }
+
+  @Override
+  public String toString() {
+    return "UserData{" +
+            "firstName='" + firstName + '\'' +
+            '}';
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    UserData userData = (UserData) o;
+
+    return firstName != null ? firstName.equals(userData.firstName) : userData.firstName == null;
+  }
+
+  @Override
+  public int hashCode() {
+    return firstName != null ? firstName.hashCode() : 0;
+  }
 }
