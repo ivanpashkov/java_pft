@@ -42,7 +42,8 @@ public class GroupHelper extends HelperBase {
   }
 
   public void initGroupModification() {
-    click(By.name("edit"));
+    //click(By.name("edit"));
+    wd.findElement(By.xpath(("td[8]/a"))).click();
   }
 
   public void submitModification() {

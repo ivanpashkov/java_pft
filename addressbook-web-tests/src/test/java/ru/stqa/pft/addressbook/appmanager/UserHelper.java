@@ -97,6 +97,15 @@ public class UserHelper extends HelperBase {
       users.add(user);
     }
 
+
     return users;
   }
+  public void editLastUser() {
+    List<UserData> users = new ArrayList<UserData>();
+   WebElement link = wd.findElement(By.xpath("//tr[@name='entry'][last()]/td[8]/a"));
+    link.click();
+   //Assert.assertNotNull(link);
+
+  }
+
 }
