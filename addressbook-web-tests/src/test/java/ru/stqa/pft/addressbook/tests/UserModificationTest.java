@@ -22,8 +22,9 @@ public class UserModificationTest extends TestBase {
     //app.getUserHelper().selectUser(before.size()-1);
     //app.getUserHelper().editUser();
     app.getUserHelper().editLastUser();
-    UserData user = new UserData(before.get(before.size()-1).getId(),"test2222222", "testMiddlename3", "testLastname3", "testNickname3", "Mr3", "Ololo3", "testaddress3", null);
+    UserData user = new UserData(before.get(before.size()-1).getId(),"modified firstname", "modified Midname", "modified lastname", "modif nickname", "Mr3", "Ololo3", "testaddress3", null);
     app.getUserHelper().fillUserForm(user, false);
+    app.getUserHelper().confirmUserEdit();
     app.getUserHelper().gotoUserPage();
     List<UserData> after = app.getUserHelper().getUserList();
     //int after = app.getUserHelper().getUserCount();
