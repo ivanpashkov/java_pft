@@ -43,7 +43,7 @@ public class UserData {
 
 
   public UserData(String firstName, String middlename, String lastname, String nickname, String title, String company, String address, String group) {
-    this.id = 0;
+    this.id = Integer.MAX_VALUE;
 
 
     this.firstName = firstName;
@@ -86,7 +86,6 @@ public class UserData {
 
   public String getGroup() {return group;
   }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -94,15 +93,13 @@ public class UserData {
 
     UserData userData = (UserData) o;
 
-    if (id != userData.id) return false;
     return firstName != null ? firstName.equals(userData.firstName) : userData.firstName == null;
   }
 
   @Override
   public int hashCode() {
-    int result = id;
-    result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
-    return result;
+    return firstName != null ? firstName.hashCode() : 0;
   }
+
 
 }
