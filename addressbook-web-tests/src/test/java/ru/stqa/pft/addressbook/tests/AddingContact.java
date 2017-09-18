@@ -24,6 +24,8 @@ public class AddingContact extends TestBase {
     //int after = app.getUserHelper().getUserCount();
     Assert.assertEquals(after.size(), before.size() + 1);
 
+    
+
   }
 
 }

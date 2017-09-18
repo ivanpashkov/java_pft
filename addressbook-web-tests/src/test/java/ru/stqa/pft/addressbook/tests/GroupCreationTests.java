@@ -6,6 +6,7 @@ import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.appmanager.TestBase;
 
 import java.security.acl.Group;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 
@@ -27,7 +28,8 @@ public class GroupCreationTests extends TestBase {
         max = g.getId();
       }
     }
-    group.setId(max);
+
+    group.setId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
     before.add(group);
     Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
   }
