@@ -22,7 +22,7 @@ public class UserModificationTest extends TestBase {
     //app.getUserHelper().selectUser(before.size()-1);
     //app.getUserHelper().editUser();
     app.getUserHelper().editLastUser();
-    UserData user = new UserData(before.get(before.size()-1).getId(),"31", "32", "33", "34", "35", "36", "37", null);
+    UserData user = new UserData(before.get(before.size()-1).getId(),"311", "322", "333", "344", "35", "36", "37", null);
     app.getUserHelper().fillUserForm(user, false);
     app.getUserHelper().confirmUserEdit();
     app.getUserHelper().gotoUserPage();
