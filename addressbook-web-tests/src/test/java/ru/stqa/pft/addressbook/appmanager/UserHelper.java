@@ -93,7 +93,7 @@ public class UserHelper extends HelperBase {
       List<WebElement> tdList = row.findElements(By.tagName("td"));
       String firstName = tdList.get(2).getText();
       String lastName = tdList.get(3).getText();
-      String id = row.findElement(By.tagName("input")).getAttribute("value");
+      int id = Integer.parseInt(row.findElement(By.tagName("input")).getAttribute("value"));
       UserData user = new UserData(id, firstName, lastName, null, null, null, null, null, null);
       users.add(user);
     }
