@@ -56,7 +56,7 @@ public class UserHelper extends HelperBase {
     List<UserData> users = new ArrayList<UserData>();
     WebElement link = wd.findElement(By.xpath("//table[@id='maintable']/tbody/tr[3]/td[8]/a/img"));
     link.click();
-  }
+}
 
   public void editLastUser() {
     List<UserData> users = new ArrayList<UserData>();

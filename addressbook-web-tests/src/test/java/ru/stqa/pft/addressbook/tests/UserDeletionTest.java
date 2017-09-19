@@ -9,7 +9,7 @@ import java.util.List;
 
 public class UserDeletionTest extends TestBase {
 
-  @Test
+  @Test (enabled = false)
   public void userDeletionTest() {
     app.getUserHelper().gotoUserPage();
     //int before = app.getUserHelper().getUserCount();

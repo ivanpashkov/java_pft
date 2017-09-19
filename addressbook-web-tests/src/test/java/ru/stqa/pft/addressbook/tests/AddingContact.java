@@ -13,7 +13,7 @@ import java.util.List;
 
 public class AddingContact extends TestBase {
 
-  @Test
+  @Test (enabled = false)
   public void testAddingContact() {
 
     app.getUserHelper().gotoUserPage();
