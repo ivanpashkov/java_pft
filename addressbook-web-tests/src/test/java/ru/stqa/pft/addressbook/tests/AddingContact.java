@@ -4,11 +4,9 @@ package ru.stqa.pft.addressbook.tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.appmanager.TestBase;
-import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.UserData;
 
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 
 public class AddingContact extends TestBase {
@@ -23,7 +21,7 @@ public class AddingContact extends TestBase {
     app.getUserHelper().initUserCreation();
     app.getUserHelper().fillUserForm(user, true);
     app.getUserHelper().submitUserCreation();
-    app.getNavigationHelper().gotoHomePage();
+    app.goTo().gotoHomePage();
     List<UserData> after = app.getUserHelper().getUserList();
     //int after = app.getUserHelper().getUserCount();
     Assert.assertEquals(after.size(), before.size() + 1);
