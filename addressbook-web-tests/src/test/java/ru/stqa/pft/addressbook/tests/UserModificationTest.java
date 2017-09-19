@@ -21,9 +21,9 @@ public class UserModificationTest extends TestBase {
     }
     List<UserData> before = app.getUserHelper().getUserList();
     //app.getUserHelper().selectUser(before.size()-1);
-    //app.getUserHelper().editUser();
-    app.getUserHelper().editLastUser();
-    UserData user = new UserData(before.get(before.size()-1).getId(),"311", "322", "333", "344", "35", "36", "37", null);
+    app.getUserHelper().editUser();
+    //app.getUserHelper().editLastUser();
+    UserData user = new UserData(before.get(before.size()-1).getId(),"3321", "322", "333", "344", "35", "36", "37", null);
     app.getUserHelper().fillUserForm(user, false);
     app.getUserHelper().confirmUserEdit();
     app.getUserHelper().gotoUserPage();

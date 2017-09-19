@@ -51,8 +51,19 @@ public class UserHelper extends HelperBase {
   }
 
   public void editUser() {
-    click(By.xpath("//img[@alt='Edit']"));
+    //click(By.xpath("//img[@alt='Edit']")); - old
     //click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img")); - my old
+    List<UserData> users = new ArrayList<UserData>();
+    WebElement link = wd.findElement(By.xpath("//table[@id='maintable']/tbody/tr[3]/td[8]/a/img"));
+    link.click();
+  }
+
+  public void editLastUser() {
+    List<UserData> users = new ArrayList<UserData>();
+    WebElement link = wd.findElement(By.xpath("//tr[@name='entry'][last()]/td[8]/a"));
+    link.click();
+    //Assert.assertNotNull(link);
+
   }
 
   public void confirmUserEdit() {
@@ -101,12 +112,6 @@ public class UserHelper extends HelperBase {
 
     return users;
   }
-  public void editLastUser() {
-    List<UserData> users = new ArrayList<UserData>();
-   WebElement link = wd.findElement(By.xpath("//tr[@name='entry'][last()]/td[8]/a"));
-    link.click();
-   //Assert.assertNotNull(link);
 
-  }
 
 }
