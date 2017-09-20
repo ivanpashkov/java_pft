@@ -18,7 +18,7 @@ public class UserModificationTest extends TestBase {
     //int before = app.user().getUserCount();
 
     if (app.user().list().size()==0) {
-      app.user().create(new UserData("testName", "testMiddlename", "testLastname", "testNickname", "Mr", "Ololo", "testaddress", "test1"), true);
+      app.user().create(new UserData().withName("testName").withMiddlename("testMiddlename").withLastname("testLastname").withNickname("testNickname").withTitle("Mr").withCompany("Ololo").withAddress("testaddress").withGroup("test1"), true);
     }
 
   }
@@ -28,7 +28,7 @@ public class UserModificationTest extends TestBase {
 
     List<UserData> before = app.user().list();
     int index = before.size()-1;
-    UserData user = new UserData(before.get(index).getId(),"3321", "322", "333", "344", "35", "36", "37", null);
+    UserData user = new UserData().withId(before.get(index).getId()).withName("modtestName").withMiddlename("modtestMiddlename").withLastname("modtestLastname").withNickname("modtestNickname").withTitle("modMr").withCompany("modOlolo").withAddress("modtestaddress").withGroup("modtest1");
     //app.user().selectUser(before.size()-1);
     app.user().modify(user);
     List<UserData> after = app.user().list();

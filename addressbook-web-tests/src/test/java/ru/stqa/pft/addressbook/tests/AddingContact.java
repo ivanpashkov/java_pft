@@ -16,7 +16,7 @@ public class AddingContact extends TestBase {
 
     app.user().home();
     List<UserData> before = app.user().list();
-    UserData user = new UserData("testName", "testMiddlename", "testLastname", "testNickname", "Mr", "Ololo", "testaddress", "test1");
+    UserData user = new UserData().withName("testName").withMiddlename("testMiddlename").withLastname("testLastname").withNickname("testNickname").withTitle("Mr").withCompany("Ololo").withAddress("testaddress").withGroup("test1");
     //int before = app.user().getUserCount(); теперь выше содержит список элементов
     app.user().initUserCreation();
     app.user().fillUserForm(user, true);
@@ -26,7 +26,7 @@ public class AddingContact extends TestBase {
     //int after = app.user().getUserCount();
     Assert.assertEquals(after.size(), before.size() + 1);
 
-    user.setId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
+    user.withId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
     before.add(user);
     Comparator<? super UserData> byId = (u1, u2) -> Integer.compare(u1.getId(), u2.getId());
     before.sort(byId);

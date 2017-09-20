@@ -15,7 +15,7 @@ public class UserDeletionTest extends TestBase {
     app.user().home();
     //int before = app.user().getUserCount();
     if (app.user().list().size()==0) {
-      app.user().create(new UserData("testName", "testMiddlename", "testLastname", "testNickname", "Mr", "Ololo", "testaddress", "test1"), true);
+      app.user().create(new UserData().withName("test1"), true);
     }
   }
 
