@@ -2,10 +2,8 @@ package ru.stqa.pft.addressbook.appmanager;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 import ru.stqa.pft.addressbook.model.UserData;
 
@@ -70,7 +68,7 @@ public class UserHelper extends HelperBase {
     click(By.xpath("//div[@id='content']/form[1]/input[22]"));
   }
 
-  public void gotoUserPage() {
+  public void home() {
     click(By.linkText("home"));
   }
 
@@ -84,11 +82,27 @@ public class UserHelper extends HelperBase {
     wd.switchTo().alert().accept();
   }
 
-  public void createUser(UserData User, boolean b) {
+  public void create(UserData User, boolean b) {
     initUserCreation();
     fillUserForm((User), b);
     submitUserCreation();
-    gotoUserPage();
+    home();
+  }
+
+
+
+  public void modify(UserData user) {
+    editUser();
+    //editLastUser();
+    fillUserForm(user, false);
+    confirmUserEdit();
+    home();
+  }
+
+  public void delete(int index) {
+    selectUser(index);
+    deleteUser();
+    home();
   }
 
   public boolean isThereAUser() {
@@ -96,7 +110,7 @@ public class UserHelper extends HelperBase {
 
   }
 
-  public List<UserData> getUserList() {
+  public List<UserData> list() {
     List<UserData> users = new ArrayList<UserData>();
     List<WebElement> rows = wd.findElements(By.xpath("//tr[@name='entry']"));
 

@@ -11,19 +11,19 @@ import java.util.List;
 
 public class AddingContact extends TestBase {
 
-  @Test (enabled = false)
+  @Test
   public void testAddingContact() {
 
-    app.getUserHelper().gotoUserPage();
-    List<UserData> before = app.getUserHelper().getUserList();
+    app.user().home();
+    List<UserData> before = app.user().list();
     UserData user = new UserData("testName", "testMiddlename", "testLastname", "testNickname", "Mr", "Ololo", "testaddress", "test1");
-    //int before = app.getUserHelper().getUserCount(); теперь выше содержит список элементов
-    app.getUserHelper().initUserCreation();
-    app.getUserHelper().fillUserForm(user, true);
-    app.getUserHelper().submitUserCreation();
+    //int before = app.user().getUserCount(); теперь выше содержит список элементов
+    app.user().initUserCreation();
+    app.user().fillUserForm(user, true);
+    app.user().submitUserCreation();
     app.goTo().gotoHomePage();
-    List<UserData> after = app.getUserHelper().getUserList();
-    //int after = app.getUserHelper().getUserCount();
+    List<UserData> after = app.user().list();
+    //int after = app.user().getUserCount();
     Assert.assertEquals(after.size(), before.size() + 1);
 
     user.setId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
