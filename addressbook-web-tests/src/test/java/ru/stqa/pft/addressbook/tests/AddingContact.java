@@ -8,6 +8,7 @@ import ru.stqa.pft.addressbook.model.UserData;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 
 public class AddingContact extends TestBase {
 
@@ -15,22 +16,20 @@ public class AddingContact extends TestBase {
   public void testAddingContact() {
 
     app.user().home();
-    List<UserData> before = app.user().list();
+    Set<UserData> before = app.user().all();
     UserData user = new UserData().withName("testName").withMiddlename("testMiddlename").withLastname("testLastname").withNickname("testNickname").withTitle("Mr").withCompany("Ololo").withAddress("testaddress").withGroup("test1");
     //int before = app.user().getUserCount(); теперь выше содержит список элементов
     app.user().initUserCreation();
     app.user().fillUserForm(user, true);
     app.user().submitUserCreation();
     app.goTo().gotoHomePage();
-    List<UserData> after = app.user().list();
+    Set<UserData> after = app.user().all();
     //int after = app.user().getUserCount();
     Assert.assertEquals(after.size(), before.size() + 1);
 
-    user.withId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
+    user.withId(after.stream().mapToInt((u) -> u.getId()).max().getAsInt());
+    //user.withId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId()); - what is it?
     before.add(user);
-    Comparator<? super UserData> byId = (u1, u2) -> Integer.compare(u1.getId(), u2.getId());
-    before.sort(byId);
-    after.sort(byId);
     Assert.assertEquals(before, after);
   }
 

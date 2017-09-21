@@ -8,7 +8,9 @@ import org.openqa.selenium.support.ui.Select;
 import ru.stqa.pft.addressbook.model.UserData;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class UserHelper extends HelperBase {
 
@@ -122,8 +124,21 @@ public class UserHelper extends HelperBase {
       UserData user = new UserData().withId(id).withName(firstName).withLastname(lastName);
       users.add(user);
     }
+    return users;
+  }
 
+  public Set<UserData> all() {
+    Set<UserData> users = new HashSet<UserData>();
+    List<WebElement> rows = wd.findElements(By.xpath("//tr[@name='entry']"));
 
+    for (WebElement row : rows) {
+      List<WebElement> tdList = row.findElements(By.tagName("td"));
+      String firstName = tdList.get(2).getText();
+      String lastName = tdList.get(3).getText();
+      int id = Integer.parseInt(row.findElement(By.tagName("input")).getAttribute("value"));
+      UserData user = new UserData().withId(id).withName(firstName).withLastname(lastName);
+      users.add(user);
+    }
     return users;
   }
 
