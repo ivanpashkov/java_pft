@@ -50,11 +50,11 @@ public class UserHelper extends HelperBase {
     click(By.linkText("add new"));
   }
 
-  public void editUser() {
+  public void editUser(int id) {
     //click(By.xpath("//img[@alt='Edit']")); - old
     //click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img")); - my old
     List<UserData> users = new ArrayList<UserData>();
-    WebElement link = wd.findElement(By.xpath("//table[@id='maintable']/tbody/tr[3]/td[8]/a/img"));
+    WebElement link = wd.findElement(By.xpath("//table[@id='maintable']/tbody/tr[" + (id+1) + "]/td[8]/a/img"));
     link.click();
 }
 
@@ -74,9 +74,9 @@ public class UserHelper extends HelperBase {
     click(By.linkText("home"));
   }
 
-  public void selectUser(int index) {
+/*  public void selectUser(int index) {
     wd.findElements(By.name("selected[]")).get(index).click();
-  }
+  }*/
 
   public void selectUserbyId(int id) {
     wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
@@ -95,21 +95,13 @@ public class UserHelper extends HelperBase {
     home();
   }
 
-
-
   public void modify(UserData user) {
-    editUser();
     //editLastUser();
     fillUserForm(user, false);
     confirmUserEdit();
     home();
   }
 
-  public void delete(int index) {
-    selectUser(index);
-    deleteUser();
-    home();
-  }
 
   public void delete(UserData user) {
     selectUserbyId(user.getId());
@@ -122,20 +114,6 @@ public class UserHelper extends HelperBase {
 
   }
 
-  public List<UserData> list() {
-    List<UserData> users = new ArrayList<UserData>();
-    List<WebElement> rows = wd.findElements(By.xpath("//tr[@name='entry']"));
-
-    for (WebElement row : rows) {
-      List<WebElement> tdList = row.findElements(By.tagName("td"));
-      String firstName = tdList.get(2).getText();
-      String lastName = tdList.get(3).getText();
-      int id = Integer.parseInt(row.findElement(By.tagName("input")).getAttribute("value"));
-      UserData user = new UserData().withId(id).withName(firstName).withLastname(lastName);
-      users.add(user);
-    }
-    return users;
-  }
 
   public Set<UserData> all() {
     Set<UserData> users = new HashSet<UserData>();

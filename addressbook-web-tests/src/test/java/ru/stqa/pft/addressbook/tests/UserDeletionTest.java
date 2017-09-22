@@ -15,7 +15,7 @@ public class UserDeletionTest extends TestBase {
   public void ensurePreconditions(){
     app.user().home();
     //int before = app.user().getUserCount();
-    if (app.user().list().size()==0) {
+    if (app.user().all().size()==0) {
       app.user().create(new UserData().withName("test1"), true);
     }
   }

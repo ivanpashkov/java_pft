@@ -8,6 +8,7 @@ import ru.stqa.pft.addressbook.model.UserData;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 
 public class UserModificationTest extends TestBase {
 
@@ -17,7 +18,7 @@ public class UserModificationTest extends TestBase {
     app.user().home();
     //int before = app.user().getUserCount();
 
-    if (app.user().list().size()==0) {
+    if (app.user().all().size()==0) {
       app.user().create(new UserData().withName("testName").withMiddlename("testMiddlename").withLastname("testLastname").withNickname("testNickname").withTitle("Mr").withCompany("Ololo").withAddress("testaddress").withGroup("test1"), true);
     }
 
@@ -26,20 +27,18 @@ public class UserModificationTest extends TestBase {
   @Test
   public void userModificationTest() {
 
-    List<UserData> before = app.user().list();
-    int index = before.size()-1;
-    UserData user = new UserData().withId(before.get(index).getId()).withName("modtestName").withMiddlename("modtestMiddlename").withLastname("modtestLastname").withNickname("modtestNickname").withTitle("modMr").withCompany("modOlolo").withAddress("modtestaddress").withGroup("modtest1");
+    Set<UserData> before = app.user().all();
+    UserData modifiedUser = before.iterator().next();
+    UserData user = new UserData().withId(modifiedUser.getId()).withName("modtestName").withMiddlename("modtestMiddlename").withLastname("modtestLastname").withNickname("modtestNickname").withTitle("modMr").withCompany("modOlolo").withAddress("modtestaddress").withGroup("modtest1");
     //app.user().selectUser(before.size()-1);
+    app.user().editUser(1);
     app.user().modify(user);
-    List<UserData> after = app.user().list();
+    Set<UserData> after = app.user().all();
     //int after = app.user().getUserCount();
     Assert.assertEquals(after.size(), before.size());
 
-    before.remove(index);
+    before.remove(modifiedUser);
     before.add(user);
-    Comparator<? super UserData> byId = (u1, u2) -> Integer.compare(u1.getId(), u2.getId());
-    before.sort(byId);
-    after.sort(byId);
     Assert.assertEquals(before, after);
   }
 
